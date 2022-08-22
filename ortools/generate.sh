@@ -4,7 +4,7 @@ do
     do
         for dnum in {1..1000..1}
         do
-            python main.py 'test' $anum $cnum $dnum 2
+            python3 main.py 'test' $anum $cnum $dnum 2
         done
     done
 done

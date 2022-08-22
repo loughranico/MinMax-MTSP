@@ -113,7 +113,7 @@ class gendata_from_ortools(Dataset):
         self.objective = objective
 
         datapath = os.path.join(os.getcwd(),
-                                '../dataset/ortools/{}/agent{}/city{}'
+                                '../dataset/ortools/TL2/{}/agent{}/city{}'
                                 .format(objective, self.anum, self.scale))
         print(datapath)
         self.datapath = datapath

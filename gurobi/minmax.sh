@@ -1,6 +1,6 @@
-agent=2
+agent=5
 city=50
 for num in {1..1000..1}
 do
-    python entrance.py $city $agent $num 3600
+    python3 entrance.py $city $agent $num 3600
 done

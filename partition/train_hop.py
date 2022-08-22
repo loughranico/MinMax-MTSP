@@ -25,7 +25,7 @@ class TrainModleMTSP(nn.Module):
                  _modelpath=os.path.join(os.getcwd(), "../savemodel"),
                  anum=2,
                  cnum=20,
-                 _device=torch.device('cuda:0'),
+                 _device=torch.device('cpu'),
                  clip=True,
                  clip_argv=3,
                  lr=1e-5,
@@ -100,6 +100,9 @@ class TrainModleMTSP(nn.Module):
         self.model.eval()
         print("testing with ortools ... ")
         loader = DataLoader(self.valset, batch_size=batch_size, shuffle=True, num_workers=8)
+        print(self.valset)
+        print(self.valset.datanum)
+        print(batch_size)
         maxiter = max(1, min(self.valset.datanum // batch_size, maxiter))
 
         net_len = []
@@ -207,7 +210,7 @@ def main():
     cnum = opts.cnum
     batch_size = opts.batch_size
     maxiter = opts.iteration
-    device = torch.device(opts.cuda)
+    device = torch.device('cpu')
     lr = opts.lr
     clip = opts.clip
     clip_argv = opts.clip_norm
