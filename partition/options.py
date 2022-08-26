@@ -14,6 +14,7 @@ def get_options(args=None):
     parser.add_argument('--clip', type=bool, default=True, help='do you want to clip gradient')
     parser.add_argument('--clip_norm', type=float, default=3.0)
     parser.add_argument('--trainIns', type=int, default=10, help='S-sample, S setting')
-    parser.add_argument("--modelpath", default=os.path.join(os.getcwd(), "savemodel"))
+    parser.add_argument("--modelpath", default=os.path.join(os.getcwd(), "savemodel"))    
+    parser.add_argument("--dataset", default=os.path.join(os.getcwd(), "datos"))
     opts = parser.parse_args(args)
     return opts
