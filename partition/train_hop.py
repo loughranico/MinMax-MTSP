@@ -32,6 +32,7 @@ class TrainModleMTSP(nn.Module):
                  train_instance=10,
                  common_hop=False,
                  global_hop=False,
+                 _datapath=os.path.join(os.getcwd(), "../datos")
                  ):
         super(TrainModleMTSP, self).__init__()
         orhelper = True,
@@ -42,6 +43,7 @@ class TrainModleMTSP(nn.Module):
         self.val = 0
         self.objective = objective
         self.modelpath = _modelpath
+        self.datapath = _datapath
         self.anum = anum
         self.cnum = cnum
         self.orhelper = orhelper
@@ -65,6 +67,11 @@ class TrainModleMTSP(nn.Module):
         self.writer = SummaryWriter('../runs_anum={}_cnum={}/{}'.format(self.anum, self.cnum, self.model_name))
         self.modelfile = os.path.join(self.modelpath, '{}.pt'.format(self.model_name))
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.lr)
+
+        
+        self.pedidofile = os.path.join(self.datapath, 'pedido.csv')
+        self.camionfile = os.path.join(self.datapath, 'camion.csv')
+        self.c_p_file = os.path.join(self.datapath, 'camiones_pedido.csv')
 
         if load:
             print("loading model:{}".format(self.modelfile))
@@ -216,11 +223,13 @@ def main():
     clip_argv = opts.clip_norm
     trainIns = opts.trainIns
     modelpath = opts.modelpath
+    datapath = opts.dataset
 
     if not os.path.exists(modelpath):
         os.mkdir(modelpath)
 
     tsp = TrainModleMTSP(_modelpath=modelpath,
+                         _datapath=datapath,
                          anum=anum,
                          cnum=cnum,
                          _device=device,

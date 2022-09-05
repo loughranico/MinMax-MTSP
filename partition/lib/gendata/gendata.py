@@ -148,8 +148,8 @@ class gendata_from_ortools(Dataset):
                 self.dataset.append([coord, tourlen])
                 y += torch.max(tourlen)
         print("\nortools testing dataset, anum = {}, cnum = {}".format(self.anum, self.scale))
-        print("\t\ttime usage in the dataset is {}".format(x/len(self.dataset)))
-        print("\t\taverage tour length is {}".format(y/len(self.dataset)))
+#        print("\t\ttime usage in the dataset is {}".format(x/len(self.dataset)))
+#        print("\t\taverage tour length is {}".format(y/len(self.dataset)))
         print("****\n\n")
 
     def __getitem__(self, idx):
